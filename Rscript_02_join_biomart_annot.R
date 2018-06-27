@@ -1,0 +1,6 @@
+library(tidyverse)
+setwd("/media/nicolas/ce71f585-e4d4-43a3-adea-f042dd352508/TCGA_rnaseq")
+first <- read_tsv("ENSG_gene_id_list.txt")
+second <- read_tsv("mart_export.txt", na = "NA")
+joined_annot <- left_join(first, second, by = "gene_id")
+write.table(joined_annot, file ="ENSG_biomart_annot2.txt", sep = "\t", quote = FALSE, row.names = FALSE)
