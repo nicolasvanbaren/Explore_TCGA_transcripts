@@ -330,7 +330,7 @@ for (TumorName in FileNames) {
 DungeonTibble <- read_tsv("corresp_fileUUID_barcode.txt")
 CastleTibble <- full_join(DungeonTibble, TowerTibble,by ="bcr_patient_barcode")
 
-# next lines of code adds a new factor column with a number that identifies the type of sample (01 = primary tumor, 06 = metastatic tumor, 11 = adjacent normal tissue), and remove rows in which the sample barcode is NA.
+# next lines of code add a new factor column with a number that identifies the type of sample (01 = primary tumor, 06 = metastatic tumor, 11 = adjacent normal tissue), and remove rows in which the sample barcode is NA.
 CastleTibble <- CastleTibble %>%
   mutate(tissue_type = as.factor(str_sub(submitter_id, 14, 15))) %>%
   filter(!is.na(submitter_id))
