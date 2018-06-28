@@ -16,11 +16,11 @@ group_by(optimizedTable, tumor_type_factor) %>%
   summarize(count = n())
 ungroup(optimizedTable)
 
-ggplot(subset(optimizedTable, tissue_type == c("01","11")), aes(x = tumor_type_factor, y = CD8B, color = tissue_type, fill = tissue_type)) +
+ggplot(subset(optimizedTable, tissue_type == c("01","11")), aes(x = tumor_type_factor, y = LRRC32, color = tissue_type, fill = tissue_type)) +
   geom_boxplot(outlier.shape = NA, color = "grey", width = 0.4, position = position_dodge(width = 1)) +
   geom_point(size = 0.3, alpha = 0.5, position = position_jitterdodge(jitter.width = 0.3, dodge.width = 1)) +
   theme_light() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  coord_cartesian(ylim = c(0, 500000)) +
+  coord_cartesian(ylim = c(0, 2500000)) +
   scale_color_manual(values = c("red","blue")) +
-  scale_fill_manual(values = rep(NA, 2))
+  scale_fill_manual(name = "Type of tissue", labels = c("Tumor", "Adjacent non-cancerous"), values = rep(NA, 2))
